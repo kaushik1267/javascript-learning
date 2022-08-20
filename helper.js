@@ -1,7 +1,16 @@
- const  helper  = {
+const  helper  = {
 
-    answerconnectSignupUrl : "https://signup.staging.answerconnect.com/signup?directSignup=true"
+    openSignupPage(url){
+        browser.url(url)
+    },
+
+    async verifypageTitle (titile) {
+        const browserTitle = browser.getTitle();
+        expect(await(await(await (browserTitle)).match(titile)));
+    }
 
 };
 
 export default helper;
+
+

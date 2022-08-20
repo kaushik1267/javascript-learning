@@ -24,10 +24,6 @@ class SignupPage {
     }
 
 
-
-    openSignupPage(url){
-        browser.url(url)
-    }
     verifypageTitle = async(titile) => {
         const browserTitle = browser.getTitle();
         expect(await(await(await (browserTitle)).match(titile)));
