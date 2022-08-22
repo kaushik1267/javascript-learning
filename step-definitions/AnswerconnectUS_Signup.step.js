@@ -4,11 +4,11 @@ import utils from '../utils'
 import helper from '../helper';
 
 Given(/^I am in the signup page$/, async() => {
-    await helper.openSignupPage(utils.answerconnectSignupUrl);
+    await SignupPage.openSignupPage(utils.answerconnectSignupUrl);
 });
 
 Then(/^I should see signup page$/, async() =>{
-    await helper.verifypageTitle("AnswerConnect");
+    await SignupPage.verifypageTitle("AnswerConnect");
 });
 
 When(/^we set data in all the required fields$/, async() => {
@@ -17,13 +17,15 @@ When(/^we set data in all the required fields$/, async() => {
  });
  
  Then(/^on click of paynow button all the fiels should be verified$/, async() =>{
-     await SignupPage.payNowBtnClk();
+   //  await SignupPage.payNowBtnClk();
+   await helper.onClick(SignupPage.payNowBtn);
      await SignupPage.verifyContactInfo(utils.testData.companyName,utils.testData.firstName,utils.testData.email,utils.testData.phoneNumber);
     // await PaymentInfo.verifyPaymentInfo("4111 1111 1111 1111","02","2023","123","500054");
  });
  
  When(/^we click on Edit Plan & Explore Add-Ons$/, async() => {
-    await SignupPage.editPlansBtnClk();
+    //await SignupPage.editPlansBtnClk();
+    await helper.onClick(SignupPage.editPlans);
  });
  
  Then(/^We should able to see plans popup$/, async() =>{

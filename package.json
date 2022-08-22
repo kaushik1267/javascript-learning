@@ -4,8 +4,9 @@
   "description": "web driver io v7 project",
   "main": "index.js",
   "scripts": {
-    "test": "rimraf allure-results && npx wdio wdio.conf.js && open allure-results"
+    "test": "npx allure generate ./allure-results --clean && npx wdio wdio.conf.js && npx allure open ./allure-report"
   },
+
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -17,6 +18,7 @@
     "@wdio/cucumber-framework": "^7.20.8",
     "@wdio/local-runner": "^7.20.9",
     "@wdio/spec-reporter": "^7.20.8",
+    "allure-commandline": "^2.18.1",
     "chromedriver": "^103.0.0",
     "eslint": "^8.21.0",
     "wdio-chromedriver-service": "^7.3.2"
@@ -24,7 +26,6 @@
   "dependencies": {
     "agent-base": "^6.0.2",
     "aggregate-error": "^3.1.0",
-    "allure-commandline": "^2.18.1",
     "ansi-escapes": "^4.3.2",
     "ansi-regex": "^5.0.1",
     "ansi-styles": "^4.3.0",

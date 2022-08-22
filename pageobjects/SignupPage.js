@@ -22,8 +22,9 @@ class SignupPage {
     get btneditplan(){
         return $("#change-plan-button");
     }
-
-
+    openSignupPage(url){
+        browser.url(url)
+    }
     verifypageTitle = async(titile) => {
         const browserTitle = browser.getTitle();
         expect(await(await(await (browserTitle)).match(titile)));
@@ -73,14 +74,14 @@ class SignupPage {
         assert.equal(userpostalCode,postalCode)
     }
 
-    async payNowBtnClk(){
-        await this.payNowBtn.click();
-    }
+    // async payNowBtnClk(){
+    //     await this.payNowBtn.click();
+    // }
 
 
-    async editPlansBtnClk(){
-        await this.editPlans.click();
-    }
+    // async editPlansBtnClk(){
+    //     await this.editPlans.click();
+    // }
     async checkPlansPopupExists(){
         const doesExist = await (this.plansPopupId);
     
