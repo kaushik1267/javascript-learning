@@ -8,8 +8,8 @@
        firstName: "kaushik",
        email: "kaushik@gmail.com",
        phoneNumber: "6301991139"
-    }
-
+    },
+    waitTime : 10000
 };
 
 export default utils;

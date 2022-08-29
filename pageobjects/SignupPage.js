@@ -1,3 +1,7 @@
+import helper from '../helper';
+import Helper from  '../helper'
+import utils from '../utils';
+
 class SignupPage {
 
 
@@ -22,20 +26,19 @@ class SignupPage {
     get btneditplan(){
         return $("#change-plan-button");
     }
-    openSignupPage(url){
-        browser.url(url)
+    async openSignupPage(url){
+        await Helper.openInBrowser(url);
     }
     verifypageTitle = async(titile) => {
         const browserTitle = browser.getTitle();
         expect(await(await(await (browserTitle)).match(titile)));
     }
-
   
     async setContactInfo(companyName,fullName,email,phone){
-        await this.companyName.setValue(companyName)
-        await this.fullName.setValue(fullName);
-        await this.email.setValue(email);
-        await this.phone.setValue(phone);
+        await  helper.setElementValue(this.companyName,companyName,utils.waitTime);
+        await  helper.setElementValue(this.fullName,fullName,utils.waitTime);
+        await  helper.setElementValue(this.email,email, utils.waitTime ); 
+        await  helper.setElementValue(this.phone,phone, utils.waitTime);  
     }
 
     async verifyContactInfo(userCompanyName,usercontactName,userEmail,userPhone){
@@ -52,20 +55,20 @@ class SignupPage {
     }
     
     async setPaymentInfo(cardNumber,expirationMonth,expirationYear,cvv,postalCode){
-        await this.cardNumber.setValue(cardNumber);
-        await this.month.setValue(expirationMonth);
-        await this.year.setValue(expirationYear);
-        await this.cvv.setValue(cvv);
-        await this.postalCode.setValue(postalCode)
+        await helper.setElementValue(this.cardNumber,cardNumber, utils.waitTime);
+        await helper.setElementValue(this.month,expirationMonth, utils.waitTime);
+        await helper.setElementValue(this.year,expirationYear, utils.waitTime);
+        await helper.setElementValue(this.cvv,cvv,  utils.waitTime);
+        await helper.setElementValue(this.postalCode,postalCode,utils.waitTime);
     }
 
     async verifyPaymentInfo(usercardNumber,usermonth,useryear,usercvv,userpostalCode){
         
-       const cardNumber = await (await this.cardNumber).getValue();
-       const month = await (await this.month).getValue();
-       const year = await (await this.year).getValue();
-       const cvv = await (await this.cvv).getValue();
-       const postalCode = await (await this.postalCode).getValue();
+       const cardNumber =     await   helper.getElementValue(this.cardNumber,usercardNumber,utils.waitTime);
+       const month = await helper.getElementValue(this.month,usermonth,utils.waitTime); 
+       const year = await  helper.getElementValue(this.year,useryear,utils.waitTime);  
+       const cvv = await  helper.getElementValue(this.cvv,usercvv,utils.waitTime);
+       const postalCode = await helper.getElementValue(this.postalCode,userpostalCode,utils.waitTime);
 
         assert.equal(usercardNumber,cardNumber);
         assert.equal(usermonth,month); 
@@ -73,15 +76,7 @@ class SignupPage {
         assert.equal(usercvv,cvv); 
         assert.equal(userpostalCode,postalCode)
     }
-
-    // async payNowBtnClk(){
-    //     await this.payNowBtn.click();
-    // }
-
-
-    // async editPlansBtnClk(){
-    //     await this.editPlans.click();
-    // }
+    
     async checkPlansPopupExists(){
         const doesExist = await (this.plansPopupId);
     
